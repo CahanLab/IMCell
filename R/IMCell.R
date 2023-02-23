@@ -32,6 +32,8 @@
 #'
 #' @return 
 #'
+#' @export
+#'
 IMCell_CELF<-function(ig,
 					kmax=5,
 					tfs=NULL,
@@ -444,6 +446,7 @@ im_celf_parallel_testing<-function(ig,
 #' @param num_cores number of cores
 #'
 #' @return 
+#' @export
 #'
 IMCell<-function(ig,
 				kmax=5,
@@ -553,6 +556,7 @@ IMCell<-function(ig,
 #' @param return_spread whether or not to return the set of influenced nodes
 #'
 #' @return 
+#' @export
 #'
 im_single_PRIM_celf_parallel<-function(ig,
 					kmax=5,
@@ -1077,6 +1081,7 @@ im_combined_PRIM_greedy_testing<-function(ig,
 #' @param num_cores number of cores
 #'
 #' @return 
+#' @export
 #'
 IMCell_expweighted<-function(ig,
 								expDat,
@@ -1442,6 +1447,7 @@ random_ICP_expweighted<-function(ig,seed,node_weights_activate,node_weights_repr
 #' @param num_cores number of cores
 #'
 #' @return 
+#' @export
 #'
 rank_by_spread<-function(ig,
 						repressor_wins=FALSE,

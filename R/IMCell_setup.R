@@ -95,6 +95,7 @@ weights_to_probability<-function(ig,method="in_degree",multiplier=1,p=0.5,pmax=0
 #'
 #'
 #' @return A list of genes to activate and to repress
+#' @export
 find_differential_nodes<-function(expMat,
 									sampTab,
 									source,
@@ -370,6 +371,7 @@ compute_node_weights<-function(nodes,
 #' @param TM_topX_sourceThresh Filter out if considered spec gene in source type
 #'
 #' @return narrowed TF search radius
+#' @export
 tfscope<-function(expCounts,sampTab,tfs,source,target,annotation_column="celltype",sourceThresh=NULL,
 					DE_lfcThresh=1,DE_pThresh=0.05,DE_pval_topX=20,DE_lfc_topX=20,
 					TM_pThresh=0.05,TM_cThresh=0.1,TM_topX=20,TM_topX_sourceThresh=50){

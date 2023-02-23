@@ -16,6 +16,7 @@ We compared variations of IMCell to existing computational prediction tools whic
 4. [Example 1.3: Variations on IMCell](#example3)
 5. [A brief look at the results](#oeplots)
 6. [A quick aside: ranking by spread](#rankbyspread)
+7. [Example 1.4: Dynamic CFE](#example_dyn)
 
 
 
@@ -224,6 +225,62 @@ ranked<-rank_by_spread(igrn,targets_activate=diff_nodes$to_activate,targets_repr
 # 25  D2_TF1    5
 
 ```
+
+
+
+
+## Example 1.4: Dynamic CFE <a name="example_dyn"></a>
+
+We can also extend IMCell to a dynamic, step-wise context by integrating aspects of the Epoch GRN reconstruction package. This allows us to guide differentiation through specified intermediate states. 
+
+This requires the Epoch package to run.
+
+```R
+require(epoch)
+
+# load the same data
+expX<-utils_loadObject("dyn_example_synthetic_expX.rda")
+sampTab<-utils_loadObject("dyn_example_synthetic_sampTab.rda")
+tfs<-utils_loadObject("dyn_example_synthetic_TFs.rda")
+grn<-utils_loadObject("dyn_example_synthetic_grn.rda")
+
+# Define sections of the trajectory to specify intermediate states and for this example, manually identify epochs
+sampTab$edge<-paste(sampTab$from,sampTab$to,sep="_")
+
+sampTab$epoch<-"epoch1"
+sampTab$epoch[sampTab$edge %in% c("sBmid_sD","sD_sEndD")]<-"epoch2"
+
+
+# Split the static trajectory into a dynamic one
+dynres<-static_to_dynamic_trajectory(grn,expX,sampTab,pseudotime_column="time",epoch_annotation_column="epoch",
+										path=c("sA_sB","sB_sBmid","sBmid_sD","sD_sEndD"),column_annotation="edge")
+
+
+# Find targets to activate and repress
+IM_targets<-find_dyn_targets(dynres, state_traj=c("sA_sB","sB_sBmid","sD_sEndD"), column_annotation="edge")
+names(IM_targets)<-c("epoch1..epoch1","epoch2..epoch2")
+
+
+# Run dynamic a.k.a. step-wise IMCell
+res<-IMCell_epochnets(dynres$dynamic_GRN,c("epoch1..epoch1","epoch2..epoch2"),targets=IM_targets,kmax=5)
+	
+# > res
+# $epoch1..epoch1
+# $epoch1..epoch1$solution_set
+# [1] "A2_TF1"
+
+
+# $epoch2..epoch2
+# $epoch2..epoch2$solution_set
+# [1] "B8_TF1" "B3_TF1"
+
+
+# Check out IMCell_epochnets_expweighted for the weighted version
+
+```
+
+
+
 
 
 
