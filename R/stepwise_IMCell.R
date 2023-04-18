@@ -225,6 +225,7 @@ IMCell_epochnets<-function(dynamic_grnDF,
 IMCell_epochnets_expweighted<-function(dynamic_grnDF,
                           network_path,
                           targets=NULL,
+                          annotation_column="annotation_column",
                           expX=NULL,
                           sampTab=NULL,
                           epochs=NULL,
@@ -268,7 +269,7 @@ IMCell_epochnets_expweighted<-function(dynamic_grnDF,
     # get expX and sampTab if running node weighting
     if (node_weight_method!="no_weight"){
       secondstate<-epochs[net]
-      sampTab_subset<-sampTab[sampTab$epoch==secondstate]
+      sampTab_subset<-sampTab[sampTab$epoch==secondstate,]
       expX_subset<-expX[,rownames(sampTab_subset)]
     }else{
       expX_subset<-expX
@@ -300,6 +301,7 @@ IMCell_epochnets_expweighted<-function(dynamic_grnDF,
                             kmax=kmax,
                             expDat=expX_subset,
                             sampTab=sampTab_subset,
+                            annotation_column=annotation_column,
                             targets_activate=to_activate,
                             targets_repress=to_repress,
                             tfs=tfscope,
