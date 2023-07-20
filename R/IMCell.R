@@ -71,12 +71,20 @@ IMCell_CELF<-function(ig,
 
 	best_spread<- -0.1 # set negative to ensure replacement
 	best_node<-NULL
+	expected_activation<-c()
 	for (node in tfs){
 		print(node)
 		mc_res<-mc_activation_cascade_parallel(ig,node,targets=targets,niter=niter,return_spread=return_spread,num_cores=num_cores)
 		spread<-mc_res$predicted_spread
 
 		sort_TFs<-rbind(sort_TFs,data.frame(TF=node,spread=spread))
+		
+		if(spread>best_spread){
+			if (return_spread){
+				expected_activation<-mc_res$expected_activation
+			}
+			best_spread<-spread
+		}
 	}
 
 	sort_TFs<-sort_TFs[order(sort_TFs$spread,decreasing=TRUE),]
@@ -87,6 +95,11 @@ IMCell_CELF<-function(ig,
 
 	# remove any TFs that have spread < min_marginal_spread -- these aren't worth testing any further
 	sort_TFs<-sort_TFs[sort_TFs$spread>=min_marginal_spread,]
+
+	if(round(prior_spread)<1){
+		warning("No predicted TFs.")
+		return(list(solution_set=NA,expected_activation=NULL))
+	}
 
 	# Check if 1 TF covered all of the targets
 	if (round(prior_spread)==length(targets) | nrow(sort_TFs)<=1){
@@ -321,6 +334,13 @@ im_celf_parallel_testing<-function(ig,
 		spread<-mc_res$predicted_spread
 
 		sort_TFs<-rbind(sort_TFs,data.frame(TF=node,spread=spread))
+
+		if(spread>best_spread){
+			if (return_spread){
+				expected_activation<-mc_res$expected_activation
+			}
+			best_spread<-spread
+		}
 	}
 
 	sort_TFs<-sort_TFs[order(sort_TFs$spread,decreasing=TRUE),]
@@ -336,6 +356,11 @@ im_celf_parallel_testing<-function(ig,
 
 	# remove any TFs that have spread < min_marginal_spread -- these aren't worth testing any further
 	sort_TFs<-sort_TFs[sort_TFs$spread>=min_marginal_spread,]
+
+	if(round(prior_spread)<1){
+		warning("No predicted TFs.")
+		return(list(solution_set=NA,expected_activation=NULL))
+	}
 
 	# Check if 1 TF covered all of the targets
 	if (round(prior_spread)==length(targets) | nrow(sort_TFs)<=1){
