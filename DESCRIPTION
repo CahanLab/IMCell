@@ -1,11 +1,10 @@
 Package: IMCell
-Title: What the Package Does (One Line, Title Case)
+Title: Yes, maybe
 Version: 0.0.0.9000
 Authors@R: c(person("Patrick", "Cahan", email = "patrick.cahan@gmail.com", role = c("aut", "cre")), person("Emily", "Su", email="esu3@jhmi.edu", role=c("aut")))
 Description: Computationally predict TF sets for cell fate engineering protocols.
 Depends: R (>= 3.5.0), igraph, loomR, parallel, DESeq2
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 biocViews:

@@ -1,0 +1,21 @@
+{
+  "upload_type": "software",
+  "title": "IMCell: influence-maximization prediction of minimal transcription factor sets for cell fate engineering",
+  "description": "IMCell predicts minimal, optimized transcription factor (TF) sets that drive cell identity transitions by formulating TF selection as an influence-maximization problem over a signed gene-regulatory network. IMCell jointly maximizes activation of target genes and repression of off-target genes using a greedy Monte-Carlo solver, supports optional expression-based node weighting, and can be extended (dynIMCell, via Epoch) to predict step-wise differentiation protocols. Software accompanying Su, Ly & Cahan, \"Prediction of parsimonious and temporally-sensitive sets of cell fate engineering transcription factors with IMCell.\"",
+  "license": "MIT",
+  "access_right": "open",
+  "creators": [
+    { "name": "Su, Emily Y.", "affiliation": "Institute for Cell Engineering and Department of Biomedical Engineering, Johns Hopkins University School of Medicine" },
+    { "name": "Ly, Brandon", "affiliation": "Department of Biomedical Engineering, Johns Hopkins University School of Medicine" },
+    { "name": "Cahan, Patrick", "affiliation": "Institute for Cell Engineering, Johns Hopkins University School of Medicine" }
+  ],
+  "keywords": [
+    "influence maximization",
+    "cell fate engineering",
+    "transcription factors",
+    "gene regulatory network",
+    "directed differentiation",
+    "reprogramming",
+    "R package"
+  ]
+}

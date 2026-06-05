@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software (this record) and the associated paper."
+title: "IMCell: influence-maximization prediction of minimal transcription factor sets for cell fate engineering"
+type: software
+authors:
+  - family-names: "Su"
+    given-names: "Emily Y."
+    affiliation: "Johns Hopkins University School of Medicine"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # TODO: add ORCID
+  - family-names: "Ly"
+    given-names: "Brandon"
+    affiliation: "Johns Hopkins University School of Medicine"
+  - family-names: "Cahan"
+    given-names: "Patrick"
+    affiliation: "Johns Hopkins University School of Medicine"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # TODO: add ORCID
+version: "0.1.0"
+date-released: "2026-06-04"      # TODO: set to actual release date
+license: MIT
+repository-code: "https://github.com/CahanLab/IMCell"
+url: "https://github.com/CahanLab/IMCell"
+# doi: "10.5281/zenodo.XXXXXXX"  # TODO: add the Zenodo VERSION DOI after the first release is archived
+preferred-citation:
+  type: article
+  title: "Prediction of parsimonious and temporally-sensitive sets of cell fate engineering transcription factors with IMCell"
+  authors:
+    - family-names: "Su"
+      given-names: "Emily Y."
+    - family-names: "Ly"
+      given-names: "Brandon"
+    - family-names: "Cahan"
+      given-names: "Patrick"
+  year: 2026
+  # doi: "10.1101/XXXXXX"        # TODO: add the bioRxiv (then journal) DOI
